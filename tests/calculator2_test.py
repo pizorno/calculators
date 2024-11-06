@@ -1,13 +1,12 @@
 from typing import Dict, List
 from calculators.app.calculator2 import Calculator2
 from calculators.drivers.numpy_handler import NumpyHandler
-from calculators.drivers.interfaces.driver_handler_interface import DriverHandlerInterface
 
 class MockRequest:
     def __init__(self, body: Dict) -> None:
         self.json = body
 
-class MockDriverHandler(DriverHandlerInterface):
+class MockDriverHandler():
     def standard_derivation(self, numbers: List[float]) -> float:
         return 3
 
