@@ -1,4 +1,4 @@
-from calculators.app.calculator1 import Calculator2
+from calculators.app.calculator2 import Calculator2
 from calculators.drivers.numpy_handler import NumpyHandler
 
 def calculator2_factory():
