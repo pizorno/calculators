@@ -1,4 +1,6 @@
 from calculators.drivers.interfaces.driver_handler_interface import DriverHandlerInterface
+from calculators.errors.http_bad_request import HttpBadRequestError
+from calculators.errors.http_unprocessable_entity import HttpUnprocessableEntityError
 from typing import Dict, List
 
 class Calculator3:
@@ -16,7 +18,7 @@ class Calculator3:
 
     def __validate_body(self, body: Dict) -> List[float]:
         if "numbers" not in body:
-            raise Exception("body mal formatado!")
+            raise HttpUnprocessableEntityError("body mal formatado!")
         input_data = body["numbers"]
         return input_data
 
@@ -31,7 +33,7 @@ class Calculator3:
 
     def __verify_result(self, variance: float, multiplication: float) -> None:
         if variance < multiplication:
-            raise Exception('Falha no processo: Variância menor que multiplicação')
+            raise HttpBadRequestError('Falha no processo: Variância menor que multiplicação')
 
     def __format_response(self, variance: float) -> Dict:
         return {
